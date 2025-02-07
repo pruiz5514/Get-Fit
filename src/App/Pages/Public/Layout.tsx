@@ -1,8 +1,19 @@
+import Button from "../../../components/atoms/Button"
+import { Header } from "../../../components/organism/Header"
 
+interface LayoutI {
+    children: React.ReactNode
+}
 
-const Layout = () => {
+const Layout:React.FC<LayoutI> = ({children}) => {
   return (
-    <div>Layout</div>
+    <>
+        <Header>
+            <li ><Button>Registrarse</Button></li>
+            <li ><Button>Inicar sesión</Button></li>
+        </Header>
+        {children}
+    </>
   )
 }
 
