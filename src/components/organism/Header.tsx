@@ -11,7 +11,7 @@ export const Header: React.FC<IHeaderProps> = ({children}) => {
   const [header, setHeader] = useState(false);
 
   return (
-    <header className="w-full bg-coal h-[80px] flex items-center justify-center">
+    <header className="w-full bg-darkGrey h-[85px] flex items-center justify-center">
         <nav className="max-w-[1600px] w-full px-4 flex justify-between items-center">
             <h1 className="text-white text-4xl flex">Get<span className="text-softElectricBlue flex gap-2 items-center">Fit <CgGym /></span></h1>
             <div>

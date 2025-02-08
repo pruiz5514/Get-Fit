@@ -12,7 +12,12 @@ const Layout:React.FC<LayoutI> = ({children}) => {
             <li ><Button>Registrarse</Button></li>
             <li ><Button>Inicar sesión</Button></li>
         </Header>
-        {children}
+        <main className="w-full min-h-[100vh] bg-coal flex justify-center">
+            <div className="w-full max-w-[1600px] px-4">
+                {children}
+            </div>
+            
+        </main>
     </>
   )
 }

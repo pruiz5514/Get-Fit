@@ -4,7 +4,8 @@
   --color-coal: #121212;
   --color-darkGrey: #1E1E1E;
   --color-softElectricBlue: #267FE8;
-  --color-shadowBG: rgba(0,0,0,0.6)
+  --color-shadowBG: rgba(0,0,0,0.6);
+  --color-herroBG: rgba(0,0,0,0.6)
 }
 
 html{
