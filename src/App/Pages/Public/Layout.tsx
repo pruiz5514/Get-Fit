@@ -1,5 +1,7 @@
 import Button from "../../../components/atoms/Button"
+import Footer from "../../../components/molecules/Footer"
 import { Header } from "../../../components/organism/Header"
+
 
 interface LayoutI {
     children: React.ReactNode
@@ -18,6 +20,7 @@ const Layout:React.FC<LayoutI> = ({children}) => {
             </div>
             
         </main>
+        <Footer/>
     </>
   )
 }
