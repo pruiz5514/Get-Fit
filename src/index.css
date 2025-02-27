@@ -3,7 +3,9 @@
 @theme{
   --color-coal: #121212;
   --color-darkGrey: #1E1E1E;
+  --color-lightGray:#BBBBBB; 
   --color-softElectricBlue: #267FE8;
+  --color-redError: #FF4D4D;
   --color-shadowBG: rgba(0,0,0,0.6);
   --color-herroBG: rgba(0,0,0,0.6)
 }

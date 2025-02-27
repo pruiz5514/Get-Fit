@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Button from "../../../components/atoms/Button"
 import Footer from "../../../components/molecules/Footer"
 import { Header } from "../../../components/organism/Header"
@@ -11,7 +12,7 @@ const Layout:React.FC<LayoutI> = ({children}) => {
   return (
     <>
         <Header>
-            <li ><Button>Registrarse</Button></li>
+            <li > <Link to='registro'><Button>Registrarse</Button> </Link> </li>
             <li ><Button>Inicar sesión</Button></li>
         </Header>
         <main className="w-full min-h-[100vh] bg-coal flex justify-center">
