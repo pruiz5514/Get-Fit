@@ -1,10 +1,13 @@
 import Form from "../../atoms/Form"
 import { yupResolver } from '@hookform/resolvers/yup'
+import { useNavigate } from "react-router-dom";
 import * as yup from 'yup'
 import FormField from "../../molecules/FormField"
 import { IUserPost } from "../../../App/core/application/dto/register/post-user.dto"
 import { useForm } from "react-hook-form"
 import Button from "../../atoms/Button"
+import { Link } from "react-router-dom"
+import { RegisterService } from "../../../App/infrastructure/services/register.service"
 
 const registerSchema = yup.object()
     .shape({
@@ -25,7 +28,10 @@ const registerSchema = yup.object()
             .required("Debes confirmar la contraseña"),
     })
 
+const useRegisterService = new RegisterService()
+
 const RegisterForm = () => {
+  const navigate = useNavigate()
   
   const {
     control, 
@@ -35,10 +41,23 @@ const RegisterForm = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     resolver: yupResolver(registerSchema)
+    
   })
 
+   
+   const handleRegister = async(data: IUserPost)=>{
+    const newUser = {
+        email: data.email,
+        username: data.username,
+        password: data.password
+    }
+    console.log(newUser)
+    await useRegisterService.postUser('auth/register', newUser);
+    navigate("/iniciar-sesion");
+   }
+
   return (
-    <Form onSubmit={()=>console.log('oee')}>
+    <Form onSubmit={handleSubmit(handleRegister)}>
         <FormField<IUserPost>
             type="email"
             label="Correo electronico" 
@@ -71,9 +90,12 @@ const RegisterForm = () => {
             error={errors.confirmPassword}
             control={control}
         />
-
-
         <Button>Crear cuenta</Button>
+        <div>
+            <p className="text-lightGray text-center">¿Tienes una cuenta?</p>
+            <p className="text-softElectricBlue text-center"><Link to='/iniciar-sesion'>Iniciar sesión</Link></p>
+        </div>
+        
     </Form>
   )
 }

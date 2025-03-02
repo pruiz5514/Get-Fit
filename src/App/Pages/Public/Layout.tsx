@@ -12,7 +12,7 @@ const Layout:React.FC<LayoutI> = ({children}) => {
   return (
     <>
         <Header>
-            <li > <Link to='registro'><Button>Registrarse</Button> </Link> </li>
+            <li > <Link to='/registro'><Button>Registrarse</Button> </Link> </li>
             <li ><Button>Inicar sesión</Button></li>
         </Header>
         <main className="w-full min-h-[100vh] bg-coal flex justify-center">

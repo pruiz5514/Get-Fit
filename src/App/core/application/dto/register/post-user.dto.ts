@@ -4,3 +4,9 @@ export interface IUserPost {
     password: string
     confirmPassword: string
 }
+
+export interface IUserPostApi{
+    email: string;
+    username: string;
+    password: string
+} 
