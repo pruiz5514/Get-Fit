@@ -41,7 +41,6 @@ const RegisterForm = () => {
     mode: "onChange",
     reValidateMode: "onChange",
     resolver: yupResolver(registerSchema)
-    
   })
 
    

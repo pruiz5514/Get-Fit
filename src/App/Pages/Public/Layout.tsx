@@ -13,7 +13,7 @@ const Layout:React.FC<LayoutI> = ({children}) => {
     <>
         <Header>
             <li > <Link to='/registro'><Button>Registrarse</Button> </Link> </li>
-            <li ><Button>Inicar sesión</Button></li>
+            <li><Link to='/iniciar-sesion'><Button>Inicar sesión</Button></Link></li>
         </Header>
         <main className="w-full min-h-[100vh] bg-coal flex justify-center">
             <div className="w-full max-w-[1600px] px-4">

@@ -1,3 +1,4 @@
+import { IPostUserResponse } from "../../core/application/dto/register/post-user-response.dto";
 import { IUserPostApi } from "../../core/application/dto/register/post-user.dto";
 import { errorAlert, successAlert } from "../utils/alerts";
 import { HttpClient } from "../utils/client-http";
@@ -11,7 +12,7 @@ export class RegisterService{
 
     async postUser(url:string, body: IUserPostApi){
         try{
-            const newUser = await this.httpClient.post(url, body);
+            const newUser = await this.httpClient.post<IPostUserResponse, IUserPostApi>(url, body);
             successAlert('Usuario creado exitosamente')
             return newUser
         } catch(error){
