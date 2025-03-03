@@ -6,6 +6,9 @@ import { ILogin } from '../../../App/core/application/dto/login/login.dto'
 import Form from '../../atoms/Form'
 import FormField from '../../molecules/FormField'
 import Button from '../../atoms/Button'
+import { LoginService } from '../../../App/infrastructure/services/login.service'
+import { useDispatch } from 'react-redux'
+import { login } from '../../../redux/features/authSlice'
 
 const LoginSchema = yup.object()
     .shape({
@@ -17,17 +20,27 @@ const LoginSchema = yup.object()
             .required('La constraseña es requerida'),
     })
 
+const useLoginService = new LoginService()
 
 const LoginForm = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    const handleLogin = (data:ILogin) => {
-        console.log(data)
+    const handleLogin = async (data:ILogin) => {
+        try{
+            const response = await useLoginService.login('auth/login', data);
+            dispatch(login({user: response.user.username, token: response.token}))
+            navigate('/dashboard')
+        } catch(error){
+            reset({ email: "", password: "" })
+        }
+        
     }
 
     const {
         control, 
         handleSubmit,
+        reset,
         formState: {errors}
     } = useForm<ILogin>({
         mode: "onChange",

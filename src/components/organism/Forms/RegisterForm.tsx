@@ -50,7 +50,6 @@ const RegisterForm = () => {
         username: data.username,
         password: data.password
     }
-    console.log(newUser)
     await useRegisterService.postUser('auth/register', newUser);
     navigate("/iniciar-sesion");
    }

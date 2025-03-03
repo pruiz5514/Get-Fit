@@ -13,9 +13,11 @@ const rootReducer = combineReducers({
 });
 
 export const store = configureStore({
-    reducer: {
-        rootReducer
-    }
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false, // Evita advertencias de Redux Persist
+    })
 })
 
 export const persistor = persistStore(store);
