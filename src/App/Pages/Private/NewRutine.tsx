@@ -1,25 +1,34 @@
 import { useEffect, useState } from "react"
 import MuscleSelect from "../../../components/molecules/MuscleSelect"
 import Layout from "./PrivateLayout"
-import ExerciseCard from "../../../components/molecules/ExerciseCard";
+import ExerciseCard from "../../../components/atoms/ExerciseCard";
 import { ExerciseDBService } from "../../infrastructure/services/exercisesDB.service";
 import { IExerciseDBResponse } from "../../core/application/dto/excersiceDB/exerciseDB-response.dto";
+import { useSearchParams } from "react-router-dom";
+import Pagination from "../../../components/molecules/Pagination";
 
 const NewRutine = () => {
   const userExerciseDBServie = new ExerciseDBService();
   const [selectedMuscle, setSelectedMuscle] = useState('back');
   const [exercises, setExercises] = useState<IExerciseDBResponse[]>([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const limit = Number(searchParams.get("limit")) || 20;
+  const offset = Number(searchParams.get("offset")) || 0;
+
   useEffect(()=>{
     const exercisesFetch = async() =>{
-        const exercisesPerMuscle = await userExerciseDBServie.getExerciseByMuscle(selectedMuscle);
+        const exercisesPerMuscle = await userExerciseDBServie.getExerciseByMuscle(`${selectedMuscle}?limit=${limit}&offset=${offset}`);
         setExercises(exercisesPerMuscle)
     } 
     exercisesFetch()
-  }, [selectedMuscle])
+  }, [selectedMuscle, offset])
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>)=> {
     setSelectedMuscle(event.target.value)
+    setSearchParams({offset:"0"}) 
+
   }
 
   return (
@@ -34,6 +43,10 @@ const NewRutine = () => {
                         <ExerciseCard exercise={exercise} key={exercise.id}/>
                     ))
                 }
+            </article>
+
+            <article className="w-full flex justify-center mt-10">
+                <Pagination data={exercises}/>
             </article>
         </section>
     </Layout>
