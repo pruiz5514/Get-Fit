@@ -11,7 +11,7 @@ interface LayoutI {
 const Layout:React.FC<LayoutI> = ({children}) => {
   return (
     <>
-        <Header>
+        <Header linkLogo="/">
             <li > <Link to='/registro'><Button>Registrarse</Button> </Link> </li>
             <li><Link to='/iniciar-sesion'><Button>Inicar sesión</Button></Link></li>
         </Header>

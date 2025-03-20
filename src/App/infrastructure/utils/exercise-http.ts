@@ -1,12 +1,11 @@
-const defaultBaseUrl = import.meta.env.VITE_BACK_HOST ?? ''
+const defaultBaseUrl = import.meta.env.VITE_BACK_EXERCISE ?? ''
 
-export class HttpClient{
+export class ExerciseClient{
     private baseUrl: string;
-    private token?: string
 
-    constructor(baseUrl?: string, token?:string){
+
+    constructor(baseUrl?: string){
         this.baseUrl = baseUrl || defaultBaseUrl
-        this.token = token
     }
 
     async get<T>(url:string): Promise<T>{
@@ -17,27 +16,11 @@ export class HttpClient{
         })
         return this.handleResponse(response)
     }
-
-    async post<T,B>(url:string, body: B): Promise<T>{
-        const headers = await this.getHeader();
-        const response = await fetch(`${this.baseUrl}/${url}`,{
-            headers: headers,
-            method: 'POST',
-            body: JSON.stringify(body)
-        })
-        return this.handleResponse(response)
-    }
-
     
-
     async getHeader(){
         const headers: HeadersInit = {
-            "Content-Type" : 'application/json'
-        }
-
-        if(this.token){
-            
-            headers['Authorization'] = `Bearer ${this.token}`
+            'x-rapidapi-key': import.meta.env.VITE_BACK_KEY,
+            'x-rapidapi-host': import.meta.env.VITE_BACK_EXERCISE_HOST
         }
 
         return headers

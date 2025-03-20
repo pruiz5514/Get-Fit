@@ -11,7 +11,7 @@ const HeaderAside: React.FC<IHeaderAside> = ({closeAside, children}) => {
 
         </div>
         <aside className="w-2/3 h-full bg-darkGrey py-8 px-6">
-            <ul className="flex flex-col gap-5 ">
+            <ul className="flex flex-col gap-5 text-white">
                 {children}
             </ul>
         </aside>
