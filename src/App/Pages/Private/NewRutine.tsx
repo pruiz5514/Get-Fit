@@ -6,8 +6,9 @@ import { ExerciseDBService } from "../../infrastructure/services/exercisesDB.ser
 import { IExerciseDBResponse } from "../../core/application/dto/excersiceDB/exerciseDB-response.dto";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../../../components/molecules/Pagination";
-import Modal from "../../../components/atoms/Modal";
 import ExerciseModal from "../../../components/molecules/ExerciseModal";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../redux/store";
 
 const NewRutine = () => {
   const userExerciseDBServie = new ExerciseDBService();
@@ -20,6 +21,8 @@ const NewRutine = () => {
 
   const limit = Number(searchParams.get("limit")) || 20;
   const offset = Number(searchParams.get("offset")) || 0;
+
+  const rutineSelection = useSelector((state: RootState) => state.newRoutine.routines)
 
   useEffect(()=>{
     const exercisesFetch = async() =>{
@@ -42,8 +45,9 @@ const NewRutine = () => {
   return (
     <Layout>
         <section className="py-6">
-            <article className="mb-10">
+            <article className="mb-10 flex justify-between">
                 <MuscleSelect onChange={handleSelect}/>
+                <button className="px-3 py-2 bg-charcoal rounded-lg text-lightGray text-xl cursor-pointer">Rutina {rutineSelection.length}</button>
             </article>
             <article className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-y-8 gap-x-4 justify-items-center lg:justify-items-start">
                 {

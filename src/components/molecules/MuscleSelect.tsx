@@ -4,7 +4,7 @@ interface IMuscleSelectProps {
 
 const MuscleSelect: React.FC<IMuscleSelectProps> = ({onChange}) => {
   return (
-    <select onChange={onChange} name="muscle-select" id="muscle-select" className="px-3 py-2 bg-darkGrey rounded-lg text-lightGray  text-xl">
+    <select onChange={onChange} name="muscle-select" id="muscle-select" className="px-3 py-2 bg-charcoal rounded-lg text-lightGray  text-xl">
         <option value="back" selected>Espalda</option>
         <option value="chest">Pecho</option>
         <option value="cardio">Cardio</option>

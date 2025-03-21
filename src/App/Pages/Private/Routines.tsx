@@ -30,7 +30,7 @@ function Routines(){
     <Layout>
       <section className="mt-6 mb-8 flex flex-col items-center">
         <h1 className="text-softElectricBlue text-center text-4xl mb-8 md:mt-10">Mis rutinas</h1>
-        <Link to="/nueva-rutina"><button className="px-3 py-2 bg-darkGrey rounded-lg text-lightGray  text-xl"> <span className="flex justify-between items-center gap-2"> Nueva rutina <CgGym /></span></button></Link>
+        <Link to="/nueva-rutina"><button className="px-3 py-2 bg-darkGrey rounded-lg text-lightGray text-xl cursor-pointer"> <span className="flex justify-between items-center gap-2"> Nueva rutina <CgGym /></span></button></Link>
       </section>
       
       <section className="flex flex-col gap-6">
