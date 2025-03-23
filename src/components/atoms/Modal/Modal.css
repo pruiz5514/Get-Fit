@@ -1,0 +1,20 @@
+.hide-scrollbar::-webkit-scrollbar-track {
+    display: none; 
+  }
+  
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 8px; 
+    background: transparent; 
+  }
+  
+  /* Estiliza la barra en sí misma */
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background: #bbb; 
+    border-radius: 10px; 
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: thin; 
+    scrollbar-color: #bbb transparent; 
+  }
+  

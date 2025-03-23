@@ -6,9 +6,10 @@ import { ExerciseDBService } from "../../infrastructure/services/exercisesDB.ser
 import { IExerciseDBResponse } from "../../core/application/dto/excersiceDB/exerciseDB-response.dto";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../../../components/molecules/Pagination";
-import ExerciseModal from "../../../components/molecules/ExerciseModal";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
+import ExerciseModal from "../../../components/molecules/Modals/ExerciseModal";
+import NewRoutineModal from "../../../components/molecules/Modals/NewRoutineModal";
 
 const NewRutine = () => {
   const userExerciseDBServie = new ExerciseDBService();
@@ -16,6 +17,7 @@ const NewRutine = () => {
   const [exercises, setExercises] = useState<IExerciseDBResponse[]>([]);
   const [exerciseSelected, setExerciseSelected] = useState<IExerciseDBResponse>()
   const [exerciseModal, setExerciseModal] = useState(false)
+  const [routineModal, setRoutineModal] = useState(false)
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -47,7 +49,7 @@ const NewRutine = () => {
         <section className="py-6">
             <article className="mb-10 flex justify-between">
                 <MuscleSelect onChange={handleSelect}/>
-                <button className="px-3 py-2 bg-charcoal rounded-lg text-lightGray text-xl cursor-pointer">Rutina {rutineSelection.length}</button>
+                <button onClick={()=>setRoutineModal(true)} className="px-3 py-2 bg-charcoal rounded-lg text-lightGray text-xl cursor-pointer">Rutina {rutineSelection.length}</button>
             </article>
             <article className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-y-8 gap-x-4 justify-items-center lg:justify-items-start">
                 {
@@ -63,6 +65,9 @@ const NewRutine = () => {
 
             { exerciseModal && exerciseSelected && <ExerciseModal exercise={exerciseSelected} onClick={()=>setExerciseModal(false)} /> }
             
+            {
+              routineModal && rutineSelection.length > 0 && <NewRoutineModal onClick={()=>setRoutineModal(false)}/> 
+            }
         </section>
     </Layout>
   )

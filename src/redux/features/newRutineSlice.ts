@@ -9,9 +9,15 @@ export const newRoutineSlice = createSlice({
     reducers:{
         addExercise: (state, action: PayloadAction<IExerciseDBResponse>) => {
             state.routines.push(action.payload)
+        },
+        removeExercise: (state, action: PayloadAction<IExerciseDBResponse>) => {
+            const index = state.routines.findIndex(exercise => exercise.id === action.payload.id)
+            if(index !== -1){
+                state.routines.splice(index,1)
+            }
         }
     }
 })
 
-export const {addExercise} = newRoutineSlice.actions
+export const {addExercise, removeExercise} = newRoutineSlice.actions
 export default newRoutineSlice.reducer
