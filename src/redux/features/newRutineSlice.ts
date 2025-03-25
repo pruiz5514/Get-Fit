@@ -15,9 +15,12 @@ export const newRoutineSlice = createSlice({
             if(index !== -1){
                 state.routines.splice(index,1)
             }
-        }
+        },
+        resetRoutines: (state) =>{
+            state.routines = []
+        }   
     }
 })
 
-export const {addExercise, removeExercise} = newRoutineSlice.actions
+export const {addExercise, removeExercise, resetRoutines} = newRoutineSlice.actions
 export default newRoutineSlice.reducer

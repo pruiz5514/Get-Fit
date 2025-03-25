@@ -3,6 +3,7 @@ import Button from "../../../components/atoms/Button"
 import { Header } from "../../../components/organism/Header"
 import { useDispatch } from "react-redux"
 import { logout } from "../../../redux/features/authSlice"
+import { persistor } from "../../../redux/store"
 
 
 interface LayoutI {
@@ -15,6 +16,7 @@ const Layout:React.FC<LayoutI> = ({children}) => {
 
   const logOut = () => {
     dispatch(logout());
+    persistor.purge()
     navigate('/')
   }
 

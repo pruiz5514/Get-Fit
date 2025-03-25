@@ -3,7 +3,6 @@ import { IRoutinePost } from "../../core/application/dto/routines/post-routine.d
 import { IRoutinePostResponse } from "../../core/application/dto/routines/post-routine-response.dto";
 import { errorAlert } from "../utils/alerts";
 import { HttpClient } from "../utils/client-http";
-import { IExerciseRoutinePost, IExerciseRoutinePostResponse } from "../../core/application/dto/routines/post-exercise-routine.dto";
 
 export class RoutinesService{
     private httpClient: HttpClient;
@@ -27,16 +26,6 @@ export class RoutinesService{
             return newRoutine
         } catch(error){
             errorAlert('Ya existe una rutina con ese nombre')
-            throw error
-        }
-    }
-
-    async postExerciseRoutine(url:string, body:IExerciseRoutinePost):Promise<IExerciseRoutinePostResponse>{
-        try{
-            const newRoutineWithExercises = await this.httpClient.post<IExerciseRoutinePostResponse, IExerciseRoutinePost>(url, body);
-            return newRoutineWithExercises
-        }catch(error:any){
-            errorAlert("Ejercicios ya se encuentran registrados en la rutina")
             throw error
         }
     }
