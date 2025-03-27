@@ -24,8 +24,6 @@ function Routines(){
     getRoutines()
   },[])
 
-  console.log(routines)
-
   return (
     <Layout>
       <section className="mt-6 mb-8 flex flex-col items-center">
@@ -38,7 +36,7 @@ function Routines(){
           routines?.length === 0 ? (<p className="text-center text-lightGray text-2xl">No hay rutinas creadas</p>):
 
           routines?.map((routine:IRoutinesResponse) => (
-            <RoutineContainer key={routine.id} routine={routine}/>
+            <Link to={`/rutinas/${routine.id}`}> <RoutineContainer key={routine.id} routine={routine}/> </Link> 
           ))
         }
       </section>

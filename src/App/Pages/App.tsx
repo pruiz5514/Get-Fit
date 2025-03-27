@@ -5,7 +5,8 @@ import Register from "./Public/Register"
 import Dashboard from "./Private/Dashboard"
 import ProtectedRoute from "./ProtectedRoute"
 import Routines from "./Private/Routines"
-import NewRutine from "./Private/NewRutine"
+import NewRutine from "./Private/NewRoutine"
+import RoutineInfo from "./Private/RoutineInfo"
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>}/>
         <Route path="/rutinas" element={<Routines/>}/>
         <Route path="/nueva-rutina" element={<NewRutine/>}/>
+        <Route path="/rutinas/:id" element={<RoutineInfo/>}/>
       </Route>
       
     </Routes>

@@ -14,7 +14,7 @@ const NewExerciseCard: React.FC<INewExerciseCardProps> = ({exercise, onClick}) =
             <img className="w-16 h-16 rounded-full" src={exercise.gifUrl} alt={exercise.name} />
             <h3 className="capitalize text-lg">{exercise.name}</h3>
         </div>
-        <button onClick={onClick} className="text-red-500 text-xl cursor-pointer"><RiDeleteBin5Fill /> </button>
+        <button onClick={onClick} className="text-red-600 text-xl cursor-pointer"><RiDeleteBin5Fill /> </button>
     </div>
   )
 }

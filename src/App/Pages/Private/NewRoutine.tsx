@@ -11,8 +11,8 @@ import { RootState } from "../../../redux/store";
 import ExerciseModal from "../../../components/molecules/Modals/ExerciseModal";
 import NewRoutineModal from "../../../components/molecules/Modals/NewRoutineModal";
 
-const NewRutine = () => {
-  const userExerciseDBServie = new ExerciseDBService();
+const NewRoutine = () => {
+  const userExerciseDBService = new ExerciseDBService();
   const [selectedMuscle, setSelectedMuscle] = useState('back');
   const [exercises, setExercises] = useState<IExerciseDBResponse[]>([]);
   const [exerciseSelected, setExerciseSelected] = useState<IExerciseDBResponse>()
@@ -28,7 +28,7 @@ const NewRutine = () => {
 
   useEffect(()=>{
     const exercisesFetch = async() =>{
-        const exercisesPerMuscle = await userExerciseDBServie.getExerciseByMuscle(`${selectedMuscle}?limit=${limit}&offset=${offset}`);
+        const exercisesPerMuscle = await userExerciseDBService.getExerciseByMuscle(`${selectedMuscle}?limit=${limit}&offset=${offset}`);
         setExercises(exercisesPerMuscle)
     } 
     exercisesFetch()
@@ -73,4 +73,4 @@ const NewRutine = () => {
   )
 }
 
-export default NewRutine
+export default NewRoutine

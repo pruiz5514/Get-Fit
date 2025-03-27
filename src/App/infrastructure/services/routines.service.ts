@@ -4,6 +4,7 @@ import { IRoutinePostResponse } from "../../core/application/dto/routines/post-r
 import { errorAlert } from "../utils/alerts";
 import { HttpClient } from "../utils/client-http";
 import { IExerciseRoutinePost, IExerciseRoutinePostResponse } from "../../core/application/dto/routines/post-exercise-routine.dto";
+import { IRoutineByID } from "../../core/application/dto/routines/get-routineById.dto";
 
 export class RoutinesService{
     private httpClient: HttpClient;
@@ -16,6 +17,15 @@ export class RoutinesService{
         try{
             const routines = await this.httpClient.get<IRoutinesResponse[]>(url);
             return routines
+        } catch(error){
+            throw error
+        }
+    }
+
+    async getRoutineById(url:string,id:string):Promise<IRoutineByID>{
+        try{
+            const routineById = await this.httpClient.get<IRoutineByID>(`${url}/${id}`)
+            return routineById
         } catch(error){
             throw error
         }
