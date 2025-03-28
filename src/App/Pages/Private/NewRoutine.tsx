@@ -6,10 +6,11 @@ import { ExerciseDBService } from "../../infrastructure/services/exercisesDB.ser
 import { IExerciseDBResponse } from "../../core/application/dto/excersiceDB/exerciseDB-response.dto";
 import { useSearchParams } from "react-router-dom";
 import Pagination from "../../../components/molecules/Pagination";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import ExerciseModal from "../../../components/molecules/Modals/ExerciseModal";
 import NewRoutineModal from "../../../components/molecules/Modals/NewRoutineModal";
+import { addExercise } from "../../../redux/features/newRutineSlice";
 
 const NewRoutine = () => {
   const userExerciseDBService = new ExerciseDBService();
@@ -44,6 +45,14 @@ const NewRoutine = () => {
     setExerciseModal(true)
   }
 
+  const addNewExercise = (event: React.MouseEvent<HTMLButtonElement>, exercise:IExerciseDBResponse )=> {
+      event.stopPropagation();
+      dispatch(addExercise(exercise))
+    }
+    
+
+  const dispatch = useDispatch();
+
   return (
     <Layout>
         <section className="py-6">
@@ -54,7 +63,7 @@ const NewRoutine = () => {
             <article className="grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-y-8 gap-x-4 justify-items-center lg:justify-items-start">
                 {
                     exercises?.map((exercise:IExerciseDBResponse)=> (
-                        <ExerciseCard onClick={()=>handleExerciseModal(exercise)} exercise={exercise} key={exercise.id}/>
+                        <ExerciseCard onClick={()=>handleExerciseModal(exercise)} exercise={exercise} key={exercise.id} routineArray={rutineSelection} addExercise={(event) => addNewExercise(event, exercise)}/>
                     ))
                 }
             </article>

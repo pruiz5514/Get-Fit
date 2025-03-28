@@ -8,27 +8,21 @@ import { addExercise } from "../../redux/features/newRutineSlice"
 
 interface IExerciseCardProps {
     exercise: IExerciseDBResponse
+    routineArray : IExerciseDBResponse[]
     onClick : () => void
+    addExercise : (event: React.MouseEvent<HTMLButtonElement>, exercise:IExerciseDBResponse )=> void
 }
 
-const ExerciseCard:React.FC<IExerciseCardProps> = ({exercise, onClick}) => {
-  const rutineSelection = useSelector((state: RootState) => state.newRoutine.routines);
-
-  const dispatch = useDispatch();
-
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, exercise:IExerciseDBResponse )=> {
-    event.stopPropagation();
-    dispatch(addExercise(exercise))
-  }
+const ExerciseCard:React.FC<IExerciseCardProps> = ({exercise, onClick, routineArray, addExercise}) => {
 
   const renderButton = (exerciseRutine:IExerciseDBResponse)=> {
-    const isSelected = rutineSelection.some(exercise => exercise.id === exerciseRutine.id );
+    const isSelected = routineArray.some(exercise => exercise.id === exerciseRutine.id );
 
     if(isSelected) {
       return <span><FaCheck /></span>
     }
     else{
-      return <button className="text-2xl cursor-pointer" onClick={(event)=>handleClick(event, exercise)}> <IoAdd /> </button>
+      return <button className="text-2xl cursor-pointer" onClick={(event)=>addExercise(event, exercise)}> <IoAdd /> </button>
     }
   }
 

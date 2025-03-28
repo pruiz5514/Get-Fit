@@ -7,6 +7,7 @@ import ProtectedRoute from "./ProtectedRoute"
 import Routines from "./Private/Routines"
 import NewRutine from "./Private/NewRoutine"
 import RoutineInfo from "./Private/RoutineInfo"
+import AddNewExercise from "./Private/AddNewExercise"
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/rutinas" element={<Routines/>}/>
         <Route path="/nueva-rutina" element={<NewRutine/>}/>
         <Route path="/rutinas/:id" element={<RoutineInfo/>}/>
+        <Route path="/rutinas/agregar-ejercicio/:id" element={<AddNewExercise/>}/>
       </Route>
       
     </Routes>

@@ -8,6 +8,7 @@ import { RoutinesService } from '../../../App/infrastructure/services/routines.s
 import { setNewRoutineInfo } from '../../../redux/features/NewRoutineInfoSlice';
 import { changeView } from '../../../redux/features/NewRoutineViewSlice';
 import { successAlert } from '../../../App/infrastructure/utils/alerts';
+import { useNavigate } from 'react-router-dom';
 
 interface INewRoutineExerciseFormProps{
     closeModal: ()=> void
@@ -17,6 +18,7 @@ const NewRoutineExerciseForm:React.FC<INewRoutineExerciseFormProps> = ({closeMod
   const routineSelection = useSelector((state: RootState) => state.newRoutine.routines)
   const routineInfo =  useSelector((state: RootState) => state.newRoutineInfo.newRoutineInfo)
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const token = useSelector((state: RootState) => state.auth.token);
     const baseUrl = import.meta.env.VITE_BACK_HOST;
@@ -40,6 +42,7 @@ const NewRoutineExerciseForm:React.FC<INewRoutineExerciseFormProps> = ({closeMod
     dispatch(setNewRoutineInfo(null))
     dispatch(changeView("routineName"))
     dispatch(resetRoutines())
+    navigate('/rutinas')
   }
 
   return (

@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Layout from "./PrivateLayout"
 import Button from "../../../components/atoms/Button";
 import RoutineInfoCard from "../../../components/molecules/RoutineInfoCard";
@@ -23,8 +23,6 @@ const RoutineInfo = () => {
     }
     getRoutineById()
   }, [])
-  
-  console.log(routineInfo)
 
   return (
     <Layout>
@@ -32,7 +30,7 @@ const RoutineInfo = () => {
             <article>
                 <h1 className="text-softElectricBlue text-4xl font-bold text-center mb-6 capitalize">{routineInfo?.name}</h1>
                 <div className="flex justify-between">
-                    <Button>Agregar ejercicios</Button>
+                    <Link to={`/rutinas/agregar-ejercicio/${id}`}> <Button>Agregar ejercicios</Button> </Link> 
                     <button className="bg-red-600  text-white px-3 py-2 rounded-lg cursor-pointer">Eliminar rutina</button>
                 </div>
             </article>
