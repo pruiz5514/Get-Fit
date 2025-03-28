@@ -24,6 +24,17 @@ const RoutineInfo = () => {
     getRoutineById()
   }, [])
 
+  const deleteRoutine = async(id:number)=>{
+    await useRoutinesService.deleteExercise('routine_exercise', id)
+    setRoutineInfo((prev) => {
+        if (!prev) return prev;
+        return {
+          ...prev, 
+          routine_exercises: prev.routine_exercises.filter((exercise) => exercise.id !== id),
+        };
+      });
+  }
+
   return (
     <Layout>
         <section className="py-6">
@@ -37,7 +48,7 @@ const RoutineInfo = () => {
             <article className="mt-8 grid grid-cols-[repeat(auto-fit,minmax(350px,1fr))] gap-y-8 gap-x-8 justify-items-center lg:justify-items-start">
                 {
                     routineInfo?.routine_exercises.map((exercise:IRoutineExercise) => (
-                        <RoutineInfoCard key={exercise.id} exerciseId={String(exercise.exercise_id)}/>
+                        <RoutineInfoCard key={exercise.id} onClick={()=>deleteRoutine(exercise.id)} exerciseId={String(exercise.exercise_id)}/>
                     ))
                 }
                 

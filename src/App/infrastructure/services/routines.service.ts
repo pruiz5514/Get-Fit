@@ -50,4 +50,12 @@ export class RoutinesService{
             throw error
         }
     }
+
+    async deleteExercise(url:string, id:number){
+        try{
+            await this.httpClient.delete(`${url}/${id}`)
+        }catch(error){
+            throw error
+        }
+    }
 }

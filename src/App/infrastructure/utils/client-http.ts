@@ -28,6 +28,15 @@ export class HttpClient{
         return this.handleResponse(response)
     }
 
+    async delete<T>(url:string):Promise<T>{
+        const headers = await this.getHeader();
+        const response = await fetch(`${this.baseUrl}/${url}`,{
+            method: 'DELETE',
+            headers: headers
+        })
+        
+        return this.handleResponse(response)
+    }
     
 
     async getHeader(){
