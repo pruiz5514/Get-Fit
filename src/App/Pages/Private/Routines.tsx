@@ -6,7 +6,7 @@ import { IRoutinesResponse } from "../../core/application/dto/routines/get-routi
 import { useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { CgGym } from "react-icons/cg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Routines(){
   const token = useSelector((state: RootState) => state.auth.token);
@@ -17,13 +17,14 @@ function Routines(){
   const [routines, setRoutines] = useState<IRoutinesResponse[]| null> (null)
 
   useEffect(()=>{
-    
     const getRoutines = async () =>{
       setRoutines(await useRoutinesService.getRoutines('routines'))
     }
     getRoutines()
   },[])
 
+  const navigate = useNavigate()
+  
   return (
     <Layout>
       <section className="mt-6 mb-8 flex flex-col items-center">
@@ -36,7 +37,7 @@ function Routines(){
           routines?.length === 0 ? (<p className="text-center text-lightGray text-2xl">No hay rutinas creadas</p>):
 
           routines?.map((routine:IRoutinesResponse) => (
-            <Link to={`/rutinas/${routine.id}`}> <RoutineContainer key={routine.id} routine={routine}/> </Link> 
+            <RoutineContainer onClick={()=> navigate(`/rutinas/${routine.id}`)} key={routine.id} routine={routine}/>
           ))
         }
       </section>

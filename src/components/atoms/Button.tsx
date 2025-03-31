@@ -6,7 +6,10 @@ interface IButtonProps{
 
 const Button:React.FC<IButtonProps> = ({children, onClick, width}) => {
   return (
-    <button onClick={onClick} className= {`bg-softElectricBlue text-white px-3 py-2 rounded-lg cursor-pointer ${width}`}> {children} </button>
+    <button onClick={(event) => {
+      event.stopPropagation();
+      if (onClick) onClick(); 
+    }}  className= {`bg-softElectricBlue text-white px-3 py-2 rounded-lg cursor-pointer ${width}`}> {children} </button>
   )
 }
 

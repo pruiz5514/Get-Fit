@@ -4,19 +4,20 @@ import { persistReducer, persistStore } from "redux-persist";
 import authReducer from './features/authSlice';
 import newRoutineReducer from './features/newRutineSlice';
 import newRoutineViewReducer from './features/NewRoutineViewSlice';
-import newRoutineInfoReducer from './features/NewRoutineInfoSlice'
-
+import newRoutineInfoReducer from './features/NewRoutineInfoSlice';
+import currentSessionReducer from './features/CurrentSessionSlice';
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: ["auth","newRoutine", "newRoutineView", "newRoutineInfo"] 
+    whitelist: ["auth","newRoutine", "newRoutineView", "newRoutineInfo", "currentSession"] 
 };
 
 const rootReducer = combineReducers({
     auth: authReducer,
     newRoutine: newRoutineReducer,
     newRoutineView: newRoutineViewReducer,
-    newRoutineInfo: newRoutineInfoReducer
+    newRoutineInfo: newRoutineInfoReducer,
+    currentSession: currentSessionReducer
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
